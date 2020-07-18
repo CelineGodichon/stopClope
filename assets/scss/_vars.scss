@@ -1,0 +1,21 @@
+$yellow: #FFDE59;
+$pink: #FFF7D4;
+$white: #FFF;
+$black: #000;
+$grey: #EEEEEE;
+$facebook : #3B5998;
+
+
+@font-face {
+  font-family: "League_Spartan";
+  src: url("../fonts/LeagueSpartan-Bold.otf");
+}
+
+@font-face {
+  font-family: "ClearSans_Regular";
+  src: url("../fonts/ClearSans-Regular.ttf");
+}
+
+$logo-font: "League_Spartan";
+$main-font: "ClearSans_Regular";
+
