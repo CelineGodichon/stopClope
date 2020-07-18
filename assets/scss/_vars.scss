@@ -1,21 +1,49 @@
-$yellow: #FFDE59;
-$pink: #FFF7D4;
-$white: #FFF;
-$black: #000;
-$grey: #EEEEEE;
-$facebook : #3B5998;
-
-
 @font-face {
-  font-family: "League_Spartan";
-  src: url("../fonts/LeagueSpartan-Bold.otf");
+  font-family: "Cigarette";
+  src: url("../fonts/Sigarette.ttf");
 }
 
+$cigarette: "Cigarette";
+
 @font-face {
-  font-family: "ClearSans_Regular";
-  src: url("../fonts/ClearSans-Regular.ttf");
+  font-family: "Lucky";
+  src: url("../fonts/Luckystrikes.otf");
 }
 
-$logo-font: "League_Spartan";
-$main-font: "ClearSans_Regular";
+$lucky: "Lucky";
 
+$redBordeaux : #4cb889;
+
+.btn-stop {
+  background-color: white;
+  color:$redBordeaux;
+  border: 1px solid $redBordeaux;
+  &:hover{
+    background-color: $redBordeaux;
+    color: white;
+  }
+}
+
+a {
+  color: $redBordeaux;
+  &:hover {
+    color: $redBordeaux;
+    text-decoration: none;
+  }
+  &:active {
+    color: $redBordeaux;
+    text-decoration: none;
+  }
+}
+
+.textBordeaux{
+  color : $redBordeaux
+}
+
+.textCigarette{
+  font-family: $cigarette;
+}
+
+.bgBordeaux{
+  background : $redBordeaux
+}
