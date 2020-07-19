@@ -1,17 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Cigarette index{% endblock %}
+{% block title %}Cigarettes{% endblock %}
 
 {% block body %}
-    <h1>Cigarette index</h1>
+    <div class="container mt-5">
+    <h1 class="textStop textCigarette">Cigarettes</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Price</th>
-                <th>IsSmoked</th>
-                <th>actions</th>
+                <th>Prix</th>
+                <th>Fumée</th>
+                <th>Qui</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,10 +21,10 @@
             <tr>
                 <td>{{ cigarette.id }}</td>
                 <td>{{ cigarette.price }}</td>
-                <td>{{ cigarette.isSmoked ? 'Yes' : 'No' }}</td>
+                <td>{{ cigarette.isSmoked ? '<i class="fas fa-circle text-danger"></i>' : '<i class="fas fa-circle text-success"></i>' }}</td>
+                <td><a href="{{ path('user_show', { 'id' : cigarette.user.id } ) }}">{{ cigarette.user.firstname ~ ' ' ~ cigarette.user.lastname }}</a></td>
                 <td>
-                    <a href="{{ path('cigarette_show', {'id': cigarette.id}) }}">show</a>
-                    <a href="{{ path('cigarette_edit', {'id': cigarette.id}) }}">edit</a>
+                    <a href="{{ path('cigarette_edit', {'id': cigarette.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -32,6 +34,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('cigarette_new') }}">Create new</a>
+    </div>
 {% endblock %}

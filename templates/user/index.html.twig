@@ -3,41 +3,29 @@
 {% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-    <div class="container mt-5">
+    <div class="container mt-5 d-flex flex-column align-items-center">
         <h1 class="textCigarette textStop">Utilisateurs</h1>
         <a class="btn btn-stop mb-2" href="{{ path('user_new') }}">Créer nouveau</a>
-        <table class="table table-responsive table-striped table-hover">
-            <thead>
+
+        {% for user in users %}
+        <div class="card mt-3" style="width: 18rem;">
+            <img class="card-img-top" src="https://cdn.vox-cdn.com/thumbor/QQEikY6eIssqrPqC8oYMqOdTmwE=/0x0:4588x2657/1200x675/filters:focal(1927x962:2661x1696)/cdn.vox-cdn.com/uploads/chorus_image/image/61597649/e9irhuudfu35eddwhxps.0.jpg" alt="Card image cap">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item textStop"> {{ user.firstname ~ ' ' ~ user.lastname }}</li>
+                <li class="list-group-item">{{ user.email }}</li>
+                <li class="list-group-item">{% for role in user.roles %} {{ role }} <br>{% endfor %}</li>
+                <li class="list-group-item">Date d'arrêt : {{ user.quitSmokingDate ? user.quitSmokingDate|date('d-m-Y') : '' }}</li>
+                <li class="list-group-item">Nombre moyen de cigarette par jour : {{ user.NbCigarettePerDay }}</li>
+            </ul>
+            <div class="card-body">
+                <a class="btn btn-stop" href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                <a class="btn btn-stop" href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
+            </div>
+        </div>
+        {% else %}
             <tr>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Prénom</th>
-                <th>Nom</th>
-                <th>Date d'arrêt</th>
-                <th>Nombre cigarettes par jour</th>
-                <th>Actions</th>
+                <td colspan="10">Aucune donnée trouvée</td>
             </tr>
-            </thead>
-            <tbody>
-            {% for user in users %}
-                <tr>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                    <td>{{ user.firstname }}</td>
-                    <td>{{ user.lastname }}</td>
-                    <td>{{ user.quitSmokingDate ? user.quitSmokingDate|date('Y-m-d') : '' }}</td>
-                    <td>{{ user.NbCigarettePerDay }}</td>
-                    <td>
-                        <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
-                        <a href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="10">Aucune donnée trouvée</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+        {% endfor %}
     </div>
 {% endblock %}

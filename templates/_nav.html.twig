@@ -1,5 +1,5 @@
 <nav class="nav">
-    <a href="#" class="nav__link">
+    <a href="{{ path('homepage') }}" class="nav__link">
         <i class="fas fa-2x fa-smoking"></i>
     </a>
     <a href="#" class="nav__link">
@@ -8,7 +8,12 @@
     <a href="#" class="nav__link">
         <i class="fas fa-2x fa-chart-line"></i>
     </a>
-    <a href="#" class="nav__link nav__link--active">
+    <a href="{{ path('user_profile_show', { id : app.user.id }) }}" class="nav__link">
         <i class="fas fa-2x fa-user-astronaut"></i>
     </a>
+    {%  if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('boardtable') }}" class="nav__link">
+        <i class="fab fa-2x fa-connectdevelop"></i>
+    </a>
+    {% endif %}
 </nav>

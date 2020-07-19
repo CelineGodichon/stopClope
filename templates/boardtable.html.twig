@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5 d-flex flex-column justify-content-between">
+    <a href="{{ path('user_index') }}" class="btn d-flex flex-column align-items-center textStop">
+        <i class="fas fa-9x fa-user-ninja"></i>
+
+    </a>
+    <a href="{{ path('cigarette_index') }}" class="btn d-flex flex-column align-items-center textStop mt-5">
+        <i class="fas fa-9x fa-smog"></i>
+    </a>
+</div>
+
+{% endblock %}
