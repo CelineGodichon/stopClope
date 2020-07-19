@@ -33,7 +33,7 @@ class RegistrationFormType extends AbstractType
             ])
             ->add('quitSmokingDate', DateType::class, [
                 'widget'    => 'single_text',
-                'label'     => 'Date de début de la fin',
+                'label' => 'Date d\'arrêt',
                 'required'  => false,
             ])
             ->add('nbCigarettePerDay', IntegerType::class, [

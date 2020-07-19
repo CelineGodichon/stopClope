@@ -1,20 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserController!{% endblock %}
+{% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/celine/Bureau/dev/stopclope/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/celine/Bureau/dev/stopclope/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
-    </ul>
-</div>
+    <div class="container mt-5">
+        <h1 class="textCigarette textStop">Utilisateurs</h1>
+        <a class="btn btn-stop mb-2" href="{{ path('user_new') }}">Créer nouveau</a>
+        <table class="table table-responsive table-striped table-hover">
+            <thead>
+            <tr>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Date d'arrêt</th>
+                <th>Nombre cigarettes par jour</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                    <td>{{ user.firstname }}</td>
+                    <td>{{ user.lastname }}</td>
+                    <td>{{ user.quitSmokingDate ? user.quitSmokingDate|date('Y-m-d') : '' }}</td>
+                    <td>{{ user.NbCigarettePerDay }}</td>
+                    <td>
+                        <a href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
+                        <a href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="10">Aucune donnée trouvée</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -5,11 +5,12 @@
 {% block body %}
     {% if not app.user %}
         <div class="homepageLogin container text-center">
+            <img src="https://zupimages.net/up/20/29/ol04.gif" alt="girl" width="300">
             <h1 class="textCigarette">Connecte toi !</h1>
             <a href="{{ path('app_login') }}" class="btn btn-stop">Par ici </a>
         </div>
     {% else %}
-        <div class="homepage container text-center bgBordeaux">
+        <div class="homepage container text-center bgStop">
            <h1 class="textCigarette mt-2"> Stop Clope</h1>
         </div>
 

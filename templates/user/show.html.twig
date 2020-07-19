@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="textStop textCigarette">{{ user.firstname ~ ' ' ~ user.lastname}}</h1>
+
+        <table class="table table-responsive table-hover">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{% for role in user.roles %} {{ role }} {% endfor %}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Nom image</th>
+                <td>{{ user.pictureName }}</td>
+            </tr>
+            <tr>
+                <th>Date d'arrêt</th>
+                <td>{{ user.quitSmokingDate ? user.quitSmokingDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Nombre cigarette par jour</th>
+                <td>{{ user.NbCigarettePerDay }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="text-center">
+            <div class="d-flex justify-content-center">
+                <a class="btn btn-stop mr-1" href="{{ path('user_edit', {'id': user.id}) }}">Editer</a>
+                <div >{{ include('user/_delete_form.html.twig') }}</div>
+                <br>
+                <br>
+            </div>
+            <a class="btn btn-stop mt-1" href="{{ path('user_index') }}">Retour à la liste</a>
+
+        </div>
+    </div>
+{% endblock %}

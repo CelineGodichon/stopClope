@@ -12,38 +12,38 @@ $cigarette: "Cigarette";
 
 $lucky: "Lucky";
 
-$redBordeaux : #4cb889;
+$turquoise : #4cb889;
 
 .btn-stop {
   background-color: white;
-  color:$redBordeaux;
-  border: 1px solid $redBordeaux;
+  color:$turquoise;
+  border: 1px solid $turquoise;
   &:hover{
-    background-color: $redBordeaux;
+    background-color: $turquoise;
     color: white;
   }
 }
 
 a {
-  color: $redBordeaux;
+  color: $turquoise;
   &:hover {
-    color: $redBordeaux;
+    color: $turquoise;
     text-decoration: none;
   }
   &:active {
-    color: $redBordeaux;
+    color: $turquoise;
     text-decoration: none;
   }
 }
 
-.textBordeaux{
-  color : $redBordeaux
+.textStop{
+  color : $turquoise
 }
 
 .textCigarette{
   font-family: $cigarette;
 }
 
-.bgBordeaux{
-  background : $redBordeaux
+.bgStop{
+  background : $turquoise
 }
