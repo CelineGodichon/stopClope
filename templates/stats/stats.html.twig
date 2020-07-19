@@ -4,6 +4,8 @@
 
     <div class="container mt-5 text-center">
         <h3 class="textCigarette textStop mb-3"> Quelques petites stats pour t'encourager ! </h3>
+        <iframe src="https://giphy.com/embed/g9582DNuQppxC" width="300" height="auto" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/hero0fwar-karmawhore-rhyming-g9582DNuQppxC"></a></p>
+
         <p>Tu as décidé d'arrêter de fumer depuis
             <span class="textStop textCigarette h4">{{ nbDaysQuiting }}</span>
             jours</p>
@@ -23,32 +25,6 @@
         <p>
             d'économie
         </p>
-
-        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script>
-            $(function() {
-                var xhr = $.get("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=pug");
-                xhr.done(function(data) {
-                    $('.gif-bg').css('background-image', 'url(' + data.data.image_url + ')');
-                });
-            });
-        </script>
-
-        <style>
-
-            .gif-bg {
-                background:url('') no-repeat center center;
-                width:30%;
-                height:30%;
-                min-height:30%; /* for mobile and tablets */
-                background-size:cover;
-                padding: 25px;
-                position:absolute
-            }
-        </style>
-        <div class="gif-bg">
-        </div>
-
 
     </div>
 {% endblock %}

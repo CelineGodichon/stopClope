@@ -21,5 +21,33 @@
     {% endif %}
 
 
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script>
+        $(function() {
+            var xhr = $.get("http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC");
+            xhr.done(function(data) {
+                $('.gif-bg').css('background-image', 'url(' + data.data.image_url + ')');
+            });
+        });
+    </script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        .gif-bg {
+            background:url('') no-repeat center center;
+            width:30%;
+            height:30%;
+            min-height:30%; /* for mobile and tablets */
+            background-size:cover;
+            padding: 25px;
+            position:absolute
+        }
+    </style>
+    <div class="gif-bg">
+    </div>
+
+
 
 {% endblock %}
