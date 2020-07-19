@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class StatsController extends AbstractController
 {
+
+    const PRICE_PER_CIGARETTE = 0.40;
+
     /**
      * @Route("/stats/{id}", name="stats_user")
      * @param User $user
@@ -23,18 +26,32 @@ class StatsController extends AbstractController
         $todayDate = new DateTime('now');
         $nbDaysQuiting = date_diff($user->getQuitSmokingDate(), $todayDate);
 
-        $smokedCigarettesSinceBeggining = count($cigaretteRepository->findBy([
+        $virtualSmokedCigarettes = $cigaretteRepository->findBy([
+            'isSmoked' => false,
+            'user' => $user->getId()
+        ]);
+
+        $smokedCigarettes = $cigaretteRepository->findBy([
             'isSmoked' => true,
             'user' => $user->getId()
-        ]));
+        ]);
 
-        $nbCigarettesHypothetic = $user->getNbHypotheticCigarettePerDay() * $nbDaysQuiting->d ;
+        $hypotheticPrice = $user->getNbHypotheticCigarettePerDay() * $nbDaysQuiting->d * self::PRICE_PER_CIGARETTE;
+        $realPrice = 0;
+        foreach ($smokedCigarettes as $smokedCigarette) {
+            $realPrice += $smokedCigarette->getPrice();
+        }
+
+        $economy = $hypotheticPrice - $realPrice;
+        $nbCigarettesHypothetic = $user->getNbHypotheticCigarettePerDay() * $nbDaysQuiting->d;
 
         return $this->render('stats/stats.html.twig', [
             'user' => $user,
-            'nbDaysQuiting' => $nbDaysQuiting,
-            'smokedCigarettesSinceBeggining' => $smokedCigarettesSinceBeggining,
-            'nbCigarettesHypothetic' => $nbCigarettesHypothetic
+            'economy' => $economy,
+            'nbDaysQuiting' => $nbDaysQuiting->d,
+            'nbCigarettesHypothetic' => $nbCigarettesHypothetic,
+            'smokedCigarettes' => count($smokedCigarettes),
+            'virtualSmokedCigarettes' => count($virtualSmokedCigarettes)
 
         ]);
     }

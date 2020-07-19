@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Cigarette;
 use App\Entity\User;
 use App\Form\CigaretteType;
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,14 +35,17 @@ class DefaultController extends AbstractController
         $cigarette = new Cigarette();
         $form = $this->createForm(CigaretteType::class, $cigarette);
         $form->handleRequest($request);
+        $user = $this->getUser();
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $cigarette->setCreatedAt(new DateTime('now'));
+            $cigarette->setUser($user);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($cigarette);
             $entityManager->flush();
 
             return $this->redirectToRoute('homepage', [
-                'user' => $this->getUser()
+                'id' => $user->getId()
             ]);
         }
 
