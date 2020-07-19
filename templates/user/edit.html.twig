@@ -20,7 +20,7 @@
         <div class="container text-center">
            <h2 class="textCigarette mt-5"> Je sais que tu es en manque de nicotine et que cela te fait faire n'importe quoi, mais accroche-toi !</h2>
             <br>
-            <a class="btn btn-stop mt-5" href="{{ path('homepage') }}">Retour à la page d'accueil</a>
+            <a class="btn btn-stop mt-5" href="{{ path('homepage', {id : app.user.id}) }}">Retour à la page d'accueil</a>
         </div>
     {% endif %}
 {% endblock %}

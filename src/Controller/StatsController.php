@@ -28,7 +28,7 @@ class StatsController extends AbstractController
             'user' => $user->getId()
         ]));
 
-        $nbCigarettesHypothetic = $user->getNbCigarettePerDay() * $nbDaysQuiting->d ;
+        $nbCigarettesHypothetic = $user->getNbHypotheticCigarettePerDay() * $nbDaysQuiting->d ;
 
         return $this->render('stats/stats.html.twig', [
             'user' => $user,

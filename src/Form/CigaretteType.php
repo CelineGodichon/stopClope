@@ -14,7 +14,6 @@ class CigaretteType extends AbstractType
         $builder
             ->add('price')
             ->add('isSmoked')
-            ->add('user')
         ;
     }
 
