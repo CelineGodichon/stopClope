@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <h3 class="textCigarette textStop mb-3"> Quelques petites stats pour t'encourager ! </h3>
+        <p>Tu as arrêté de fumer depuis <span class="textStop textCigarette">{{ nbDaysQuiting.d }}</span>  jours</p>
+        <p>Tu aurais en temps normal fumé <span class="textStop textCigarette">{{ nbCigarettesHypothetic }}</span> cigarettes</p>
+        <p>Tu as voulu en fumer <span class="textStop textCigarette">BLA BLA</span> </p>
+        <p>Tu n'en a réellement fumé que <span class="textStop textCigarette">{{ smokedCigarettesSinceBeggining }}</span> </p>
+        {% if smokedCigarettesSinceBeggining < nbCigarettesHypothetic %}
+            Bravo à toi
+        {% endif %}
+    </div>
+{% endblock %}

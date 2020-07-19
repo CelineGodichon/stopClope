@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -64,7 +65,7 @@ class User implements UserInterface, Serializable
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $NbCigarettePerDay;
+    private $nbHypotheticCigarettePerDay;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Cigarette", mappedBy="user")
@@ -76,16 +77,26 @@ class User implements UserInterface, Serializable
         $this->cigarettes = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -114,6 +125,10 @@ class User implements UserInterface, Serializable
         return array_unique($roles);
     }
 
+    /**
+     * @param array $roles
+     * @return $this
+     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -128,66 +143,106 @@ class User implements UserInterface, Serializable
         return (string) $this->password;
     }
 
+    /**
+     * @param string $password
+     * @return $this
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
 
+    /**
+     * @param string|null $firstname
+     * @return $this
+     */
     public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
 
+    /**
+     * @param string $lastname
+     * @return $this
+     */
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPictureName(): ?string
     {
         return $this->pictureName;
     }
 
+    /**
+     * @param string|null $pictureName
+     * @return $this
+     */
     public function setPictureName(?string $pictureName): self
     {
         $this->pictureName = $pictureName;
         return $this;
     }
 
-    public function getQuitSmokingDate(): ?\DateTimeInterface
+    /**
+     * @return DateTimeInterface|null
+     */
+    public function getQuitSmokingDate(): ?DateTimeInterface
     {
         return $this->quitSmokingDate;
     }
 
-    public function setQuitSmokingDate(\DateTimeInterface $quitSmokingDate): self
+    /**
+     * @param DateTimeInterface $quitSmokingDate
+     * @return $this
+     */
+    public function setQuitSmokingDate(DateTimeInterface $quitSmokingDate): self
     {
         $this->quitSmokingDate = $quitSmokingDate;
         return $this;
     }
 
-    public function getNbCigarettePerDay(): ?int
+    /**
+     * @return mixed
+     */
+    public function getNbHypotheticCigarettePerDay()
     {
-        return $this->NbCigarettePerDay;
+        return $this->nbHypotheticCigarettePerDay;
     }
 
-    public function setNbCigarettePerDay(?int $NbCigarettePerDay): self
+    /**
+     * @param mixed $nbHypotheticCigarettePerDay
+     * @return User
+     */
+    public function setNbHypotheticCigarettePerDay($nbHypotheticCigarettePerDay): self
     {
-        $this->NbCigarettePerDay = $NbCigarettePerDay;
+        $this->nbHypotheticCigarettePerDay = $nbHypotheticCigarettePerDay;
         return $this;
     }
+
 
     /**
      * @return Collection|Cigarette[]
@@ -197,16 +252,23 @@ class User implements UserInterface, Serializable
         return $this->cigarettes;
     }
 
+    /**
+     * @param Cigarette $cigarette
+     * @return $this
+     */
     public function addCigarette(Cigarette $cigarette): self
     {
         if (!$this->cigarettes->contains($cigarette)) {
             $this->cigarettes[] = $cigarette;
             $cigarette->setUser($this);
         }
-
         return $this;
     }
 
+    /**
+     * @param Cigarette $cigarette
+     * @return $this
+     */
     public function removeCigarette(Cigarette $cigarette): self
     {
         if ($this->cigarettes->contains($cigarette)) {

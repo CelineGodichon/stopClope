@@ -25,28 +25,7 @@ class CigaretteController extends AbstractController
         ]);
     }
 
-    /**
-     * @Route("/new", name="cigarette_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $cigarette = new Cigarette();
-        $form = $this->createForm(CigaretteType::class, $cigarette);
-        $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($cigarette);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('cigarette_index');
-        }
-
-        return $this->render('cigarette/new.html.twig', [
-            'cigarette' => $cigarette,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="cigarette_show", methods={"GET"})

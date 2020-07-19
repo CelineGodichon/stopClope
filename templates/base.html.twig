@@ -16,10 +16,11 @@
 {#            {% include 'Base/flashes.html.twig' %}#}
 {% block body %}
 {% endblock %}
+{% if app.user %}
 {% block nav %}
     {% include '_nav.html.twig' %}
-
 {% endblock %}
+{% endif %}
 
 
 {% block javascripts %}

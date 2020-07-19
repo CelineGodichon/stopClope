@@ -1,7 +1,9 @@
-{%  extends 'base.html.twig' %}
-{%  block body %}
+{% extends 'base.html.twig' %}
+{% block body %}
 
-    <img class="card-img-top" src="https://cdn.vox-cdn.com/thumbor/QQEikY6eIssqrPqC8oYMqOdTmwE=/0x0:4588x2657/1200x675/filters:focal(1927x962:2661x1696)/cdn.vox-cdn.com/uploads/chorus_image/image/61597649/e9irhuudfu35eddwhxps.0.jpg" alt="Card image cap">
+    <img class="card-img-top"
+         src="https://cdn.vox-cdn.com/thumbor/QQEikY6eIssqrPqC8oYMqOdTmwE=/0x0:4588x2657/1200x675/filters:focal(1927x962:2661x1696)/cdn.vox-cdn.com/uploads/chorus_image/image/61597649/e9irhuudfu35eddwhxps.0.jpg"
+         alt="Card image cap">
 
     <div class="container mt-5">
         <div class="textStop textCigarette text-center">
@@ -12,7 +14,13 @@
         <div class="text-center mt-3">
             <p>{{ user.email }}</p>
             <p>Date d'arrêt : {{ user.quitSmokingDate | date ('d-m-Y') }}</p>
-            <p>Nombre de cigarette par jour : {{ user.nbCigarettePerDay }}</p>
+            <p>Nombre de cigarette par jour : {{ user.nbHypotheticCigarettePerDay }}</p>
+        </div>
+
+        <div class="text-center mt-3">
+            <a class="btn btn-stop mb-1" href="{{ path('user_profile_edit', {'id': user.id}) }}">Editer</a>
+            <br>
+            <a class="btn btn-outline-danger mb-5" href="{{ path('app_logout') }}"><i class="fas fa-power-off"></i></a>
         </div>
     </div>
 

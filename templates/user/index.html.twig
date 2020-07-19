@@ -15,7 +15,7 @@
                 <li class="list-group-item">{{ user.email }}</li>
                 <li class="list-group-item">{% for role in user.roles %} {{ role }} <br>{% endfor %}</li>
                 <li class="list-group-item">Date d'arrêt : {{ user.quitSmokingDate ? user.quitSmokingDate|date('d-m-Y') : '' }}</li>
-                <li class="list-group-item">Nombre moyen de cigarette par jour : {{ user.NbCigarettePerDay }}</li>
+                <li class="list-group-item">Nombre moyen de cigarette par jour : {{ user.nbHypotheticCigarettePerDay }}</li>
             </ul>
             <div class="card-body">
                 <a class="btn btn-stop" href="{{ path('user_show', {'id': user.id}) }}">Voir</a>
