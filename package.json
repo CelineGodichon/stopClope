@@ -22,7 +22,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "chart.js": "^2.9.3",
+        "chart.js": "^2.9.4",
         "node-sass": "^4.12.0",
         "sass-loader": "^7.1.0"
     }
